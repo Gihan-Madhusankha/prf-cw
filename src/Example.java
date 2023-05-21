@@ -22,7 +22,474 @@ class Example{
         }
     }
 
+    // [10] best in database management system
+    public static String[][] bestInDbms(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
 
+        while(true){
+            // print the title of " best in database management system"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%56s %23s","BEST IN DATABASE MANAGEMENT SYSTEM","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.println("+-------+-----------------------+----------+---------+");
+            System.out.println("|ID	|Name			|DBMS Marks|PRF Marks|");
+            System.out.println("+-------+-----------------------+----------+---------+");
+
+            int count = 0;
+            int count1 = 0;
+            int count2 = 0;
+
+            int[] ar = new int[stDetail1.length];
+
+            // to know the no of students who didn't enter marks for the subjects
+            for(int i=0; i<stDetail1.length; i++){
+                if(stDetail1[i][0]!=(null) && stDetail1[i][2]==null){
+                    count++;
+                    ar[i] = 0;
+                }else{
+                    ar[i] = 1;
+                    count2++;
+                }
+
+                // delete student count
+                if(stDetail1[i][0]==null){
+                    count1++;
+                    ar[i] = 2;
+                }
+            }
+
+
+            //~ //  create an array to store prf marks of all students
+            int[] dbms = new int[stDetail1.length];
+            int[] dbms1 = new int[stDetail1.length];
+
+
+            // store the dbms marks of all students
+            for(int i=0; i<stDetail1.length; i++){
+                if(ar[i]==1){
+                    dbms[i] = Integer.parseInt(stDetail1[i][3]);
+                }
+            }
+
+            // copy all the values of the old array to the new array
+            for(int i=0; i<stDetail1.length; i++){
+                dbms1[i] = dbms[i];
+            }
+
+            // sort an array asc.
+            for(int i=0; i<stDetail1.length; i++){
+                for(int j=0; j<dbms.length-1; j++){
+                    if(dbms[j] > dbms[j+1]){
+                        int temp = dbms[j];
+                        dbms[j] = dbms[j+1];
+                        dbms[j+1] = temp;
+                    }
+                }
+            }
+
+            for(int i=dbms.length-1; i>=(count1+count); i--){
+                for(int j=0; j<dbms1.length; j++){
+                    if(dbms[i]==dbms1[j]){
+
+                        System.out.print("|"+stDetail1[j][0]+"	");
+                        System.out.print("|"+stDetail1[j][1]+"			");
+                        System.out.printf("|%10s",stDetail1[j][3]);
+                        System.out.printf("|%9s%s%n",stDetail1[j][2],"|");
+                        dbms1[j] = 0; // to prevent duplication of values
+                        break;
+
+                    }
+                }
+            }
+
+            System.out.println("+-------+-----------------------+----------+---------+");
+
+            System.out.print("\nDo you want to go back to main menu? (Y/n) > ");
+            char ch = input.next().charAt(0);
+
+            if(ch=='Y' || ch=='y'){
+                clearConsole();
+                return stDetail1;
+            }else if(ch=='N' || ch=='n'){
+                clearConsole();
+                continue;
+            }else{
+                System.out.println("Invalid Input..!!");
+            }
+
+        }
+
+    }
+
+
+    // [9] best in programming fundamentals
+    public static String[][] bestInPrf(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+        while(true){
+            // print the title of "best in programming fundamentals"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%55s %24s","BEST IN PROGRAMMING FUNDAMENTALS","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.println("+-------+-----------------------+---------+----------+");
+            System.out.println("|ID	|Name			|PRF Marks|DBMS Marks|");
+            System.out.println("+-------+-----------------------+---------+----------+");
+
+            int count = 0;
+            int count1 = 0;
+            int count2 = 0;
+
+            int[] ar = new int[stDetail1.length];
+
+            // to know the no of students who didn't enter marks for the subjects
+            for(int i=0; i<stDetail1.length; i++){
+                if(stDetail1[i][0]!=(null) && stDetail1[i][2]==null){
+                    count++;
+                    ar[i] = 0;
+                }else{
+                    ar[i] = 1;
+                    count2++;
+                }
+
+                // delete student count
+                if(stDetail1[i][0]==null){
+                    count1++;
+                    ar[i] = 2;
+                }
+            }
+
+
+            //~ //  create an array to store prf marks of all students
+            int[] prf = new int[stDetail1.length];
+            int[] prf1 = new int[stDetail1.length];
+
+
+            // store the prf marks of all students
+            for(int i=0; i<stDetail1.length; i++){
+                if(ar[i]==1){
+                    prf[i] = Integer.parseInt(stDetail1[i][2]);
+                }
+            }
+
+            // copy all the values of the old array to the new array
+            for(int i=0; i<stDetail1.length; i++){
+                prf1[i] = prf[i];
+            }
+
+            // sort an array asc.
+            for(int i=0; i<stDetail1.length; i++){
+                for(int j=0; j<prf.length-1; j++){
+                    if(prf[j] > prf[j+1]){
+                        int temp = prf[j];
+                        prf[j] = prf[j+1];
+                        prf[j+1] = temp;
+                    }
+                }
+            }
+
+
+            for(int i=prf.length-1; i>=(count1+count); i--){
+                for(int j=0; j<prf1.length; j++){
+                    if(prf[i]==prf1[j]){
+
+                        System.out.print("|"+stDetail1[j][0]+"	");
+                        System.out.print("|"+stDetail1[j][1]+"			");
+                        System.out.printf("|%9s",stDetail1[j][2]);
+                        System.out.printf("|%10s%s%n",stDetail1[j][3],"|");
+                        prf1[j] = 0; // to prevent duplication of values
+                        break;
+                    }
+                }
+            }
+
+            System.out.println("+-------+-----------------------+---------+----------+");
+
+            System.out.print("\nDo you want to go back to main menu? (Y/n) > ");
+            char ch = input.next().charAt(0);
+
+            if(ch=='Y' || ch=='y'){
+                clearConsole();
+                return stDetail1;
+            }else if(ch=='N' || ch=='n'){
+                clearConsole();
+                continue;
+            }else{
+                System.out.println("Invalid Input..!!");
+            }
+
+        }
+
+    }
+
+
+    // [8] print students ranks
+    public static void printStudentsRanks(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+        while(true){
+
+            // print the title of "print students ranks"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%49s %30s","PRINT STUDENT'S RANKS","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.println("+-------+-------+-----------------------+-----------+----------+");
+            System.out.println("|Rank	|ID	|Name			|Total Marks|Avg. Marks|");
+            System.out.println("+-------+-------+-----------------------+-----------+----------+");
+
+            int count = 0;
+            int count1 = 0;
+            int count2 = 0;
+
+            int[] ar = new int[stDetail1.length];
+            // to know the no of students who didn't enter marks for the subjects
+            for(int i=0; i<stDetail1.length; i++){
+                if(stDetail1[i][0]!=(null) && stDetail1[i][2]==null){
+                    count++;
+                    ar[i] = 0;
+                }else{
+                    ar[i] = 1;
+                    count2++;
+                }
+
+                // delete student count
+                if(stDetail1[i][0]==null){
+                    count1++;
+                    ar[i] = 2;
+                }
+            }
+            //System.out.println(Arrays.toString(ar));
+
+            double[] avgOfStudents = new double[stDetail1.length];
+            double[] avgOfStudents1 = new double[stDetail1.length];
+
+            // store the average marks of all students
+            for(int i=0; i<stDetail1.length; i++){
+                if(ar[i]==1){
+                    avgOfStudents[i] = ((Integer.parseInt(stDetail1[i][2])+Integer.parseInt(stDetail1[i][3])) / 2.0);
+                }
+            }
+            //System.out.print(Arrays.toString(avgOfStudents));
+
+            // copy all the values of the old array to the new array
+            for(int i=0; i<stDetail1.length; i++){
+                avgOfStudents1[i] = avgOfStudents[i];
+            }
+
+            // sort an array asc.
+            for(int i=0; i<stDetail1.length; i++){
+                for(int j=0; j<avgOfStudents.length-1; j++){
+                    if(avgOfStudents[j] > avgOfStudents[j+1]){
+                        double temp = avgOfStudents[j];
+                        avgOfStudents[j] = avgOfStudents[j+1];
+                        avgOfStudents[j+1] = temp;
+                    }
+                }
+            }
+
+            //~ //Arrays.sort(avgOfStudents);
+            //~ System.out.println(Arrays.toString(avgOfStudents1));
+            //~ System.out.println(Arrays.toString(avgOfStudents)); // sort one
+
+            int rank = 1;
+            for(int i=avgOfStudents.length-1; i>=(count1+count); i--){
+                for(int j=0; j<avgOfStudents1.length; j++){
+                    if(avgOfStudents[i]==avgOfStudents1[j]){
+
+                        System.out.print("|"+rank+"	");
+                        rank++;
+                        System.out.print("|"+stDetail1[j][0]+"	");
+                        System.out.print("|"+stDetail1[j][1]+"			");
+
+                        int tot = (Integer.parseInt(stDetail1[j][2])+Integer.parseInt(stDetail1[j][3]));
+                        System.out.printf("|%11d%s",tot,"|");
+
+                        double avg = tot / 2.0;
+                        System.out.printf("%10.2f%s%n",avg,"|");
+                        avgOfStudents1[j] = 0; // to prevent duplication of values
+                        break;
+                    }
+                }
+            }
+
+            System.out.println("+-------+-------+-----------------------+-----------+----------+");
+
+            System.out.print("\nDo you want to go back to main menu? (Y/n) > ");
+            char ch = input.next().charAt(0);
+
+            if(ch=='Y' || ch=='y'){
+                clearConsole();
+                break;
+            }else if(ch=='N' || ch=='n'){
+                clearConsole();
+                continue;
+            }else{
+                System.out.println("Invalid Input..!!");
+            }
+
+        }
+    }
+
+
+    // [7] print student details
+    public static String[][] printStudentDetails(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+
+        L1:	while(true){
+            // print the title of "print student details"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%49s %30s","PRINT STUDENT DETAILS","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.print("Enter student ID : ");
+            String stID = input.next();
+
+
+            for(int i=0; i<stDetail1.length; i++){
+                //checking whether the student id is available or not
+                if(stID.equals(stDetail1[i][0])){
+
+                    if(stDetail1[i][2]==null){
+                        System.out.println("Student Name     : "+stDetail1[i][1]);
+                        System.out.println("\nMarks yet to be added.");
+
+                        System.out.print("\nDo you want to search another student details? (Y/n) > ");
+                        char ch = input.next().charAt(0);
+
+                        if(ch=='Y' || ch=='y'){
+                            clearConsole();
+                            continue L1;
+                        }else if(ch=='N' || ch=='n'){
+                            clearConsole();
+                            return stDetail1;
+                        }else{
+                            System.out.println("Invalid Input..!!");
+                        }
+                    }else{
+                        System.out.println("Student Name     : "+stDetail1[i][1]);
+                        System.out.printf("+----------------------------------+----------------+%n");
+                        System.out.printf("|Programming Fundamentals Marks	   | %15d%s %n",Integer.parseInt(stDetail1[i][2]),"|");
+                        System.out.printf("|Database Management System Marks  | %15d%s %n",Integer.parseInt(stDetail1[i][3]),"|");
+
+                        int tot = Integer.parseInt(stDetail1[i][2])+Integer.parseInt(stDetail1[i][3]);
+                        System.out.printf("|Total Mark		 	   | %15d%s %n",tot,"|");
+
+                        double avg = tot/2.0;
+                        System.out.printf("|Avg. Marks			   | %15.2f%s %n",avg,"|");
+
+                        int count = 0; // declare the "count" variable to print the word "last"
+
+                        //  create an array to store average marks of all students
+                        double[] avgOfStudents = new double[stDetail1.length];
+
+                        for(int g=0; g<stDetail1.length; g++){
+                            if(stDetail1[g][2]!=null){
+                                count++;
+                                avgOfStudents[g] = ((Integer.parseInt(stDetail1[g][2])+Integer.parseInt(stDetail1[g][3])) / 2.0);
+                            }
+                        }
+
+                        // sorting of an array descending order
+                        for(int a=0; a<avgOfStudents.length; a++){
+                            for(int j=0; j<avgOfStudents.length-1; j++){
+                                if(avgOfStudents[j] < avgOfStudents[j+1]){
+                                    double temp = avgOfStudents[j];
+                                    avgOfStudents[j] = avgOfStudents[j+1];
+                                    avgOfStudents[j+1] = temp;
+                                }
+                            }
+                        }
+
+                        // find the rank
+                        int rank = 1;
+                        for(int a=0; a<avgOfStudents.length; a++){
+                            if(avg==avgOfStudents[a]){
+                                rank = a+1;
+                            }
+                        }
+
+                        String position = "";
+                        if(rank==1){
+                            position = "(first)";
+                            System.out.printf("|Rank				   | %7d %s%s%n",rank,position,"|");
+                        }else if(rank==2){
+                            position = "(second)";
+                            System.out.printf("|Rank				   | %7d%s%s%n",rank,position,"|");
+                        }else if(rank==3){
+                            position = "(third)";
+                            System.out.printf("|Rank				   | %7d %s%s%n",rank,position,"|");
+                        }else if(rank==count){
+                            position = "(last)";
+                            System.out.printf("|Rank				   | %8d %s%s%n",rank,position,"|");
+                        }else{
+                            System.out.printf("|Rank				   | %15d%s%s%n",rank,position,"|");
+                        }
+
+
+                        System.out.printf("+----------------------------------+----------------+%n");
+
+                        System.out.print("\nDo you want to search another student details? (Y/n) > ");
+                        char ch = input.next().charAt(0);
+
+                        if(ch=='Y' || ch=='y'){
+                            clearConsole();
+                            continue L1;
+                        }else if(ch=='N' || ch=='n'){
+                            clearConsole();
+                            return stDetail1;
+                        }else{
+                            System.out.println("Invalid Input..!!");
+                        }
+
+                    }
+
+                }
+
+            }
+            // If the enter an incorrect Student ID number
+            System.out.print("Invalid Studunt ID. Do you want to search again? (Y/n) > ");
+            char c = input.next().charAt(0);
+
+            if(c=='Y' || c=='y'){
+                clearConsole();
+                continue;
+            }else if(c=='N' || c=='n'){
+                clearConsole();
+                return stDetail1;
+            }else{
+                System.out.println("Invalid Input..!!");
+            }
+
+        }
+
+    }
 
 
 
