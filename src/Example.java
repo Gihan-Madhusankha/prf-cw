@@ -26,6 +26,261 @@ class Example{
 
 
 
+    // [6] Delete Student
+    public static String[][] deleteStudent(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+        int y = 0;
+        String[][] del = new String[stDetail1.length][4];
+
+        L1:	while(true){
+            // print title of "delete student"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%46s %33s","DELETE STUDENT","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.print("Enter student ID : ");
+            String stID = input.next();
+
+            for(int i=0; i<stDetail1.length; i++){
+                if(stID.equals(stDetail1[i][0])){	//checking whether the student id is available or not
+
+                    // pass the id you want to delete to the last element
+                    for(int a=i; a<stDetail1.length-1; a++){
+                        for(int b=0; b<4; b++){
+                            String temp = stDetail1[a][b];
+                            stDetail1[a][b] = stDetail1[a+1][b];
+                            stDetail1[a+1][b] = temp;
+                        }
+                    }
+
+                    System.out.println("Student has been deleted successfully.");
+                    System.out.print("Do you want to delete another student? (Y/n) > ");
+                    char dl = input.next().charAt(0);
+
+                    if(dl=='Y' || dl=='y'){
+                        clearConsole();
+                        y++;
+                        continue L1;
+
+                    }else if(dl=='N' || dl=='n'){
+                        clearConsole();
+                        for(int p=0; p<stDetail1.length-(y+1); p++){
+                            for(int q=0; q<4; q++){
+                                del[p][q] = stDetail1[p][q];	// assign values to the new array
+                            }
+                        }
+                        stDetail1 = del;	// assign the array address of del into the stDetail array
+                        return stDetail1;
+
+                    }else{
+                        System.out.println("Invalid Input..!!");
+                    }
+
+                }
+
+            }
+            // If the enter an incorrect Student ID number
+            System.out.print("Invalid Studunt ID. Do you want to search again? (Y/n) > ");
+            char ch = input.next().charAt(0);
+
+            if(ch=='Y' || ch=='y'){
+                clearConsole();
+                continue;
+            }else if(ch=='N' || ch=='n'){
+                clearConsole();
+                for(int p=0; p<stDetail1.length-y; p++){
+                    for(int q=0; q<4; q++){
+                        del[p][q] = stDetail1[p][q];
+                    }
+                }
+                stDetail1 = del;
+                return stDetail1;
+
+            }else{
+                System.out.println("Invalid Input..!!");
+            }
+
+        }
+    }
+
+
+
+    // [5] Update Marks
+    public static String[][] updateMarks(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+        L1:	while(true){
+
+            // print title of "update marks"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%45s %34s","UPDATE MARKS","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+            System.out.print("Enter Student ID : ");
+            String stID = input.next();
+
+            while(true){
+                for(int j=0; j<stDetail1.length; j++){
+
+                    if(stID.equals(stDetail1[j][0])){   // the entered ID is also checked as valid
+                        System.out.println("Student Name     : "+stDetail1[j][1]);
+
+                        if(stDetail1[j][2]==null){
+                            System.out.println("\nThis student's marks yet to be added.");
+                            System.out.print("Do you want to update the marks of another student? (Y/n) > ");
+
+                            char A = input.next().charAt(0);
+                            if(A=='Y' || A=='y'){
+                                clearConsole();
+                                continue L1;
+                            }else if(A=='N' || A=='n'){
+                                clearConsole();
+                                return stDetail1;
+                            }else{
+                                System.out.println("Invalid Input..!!");
+                            }
+
+                        }else{
+
+                            System.out.println("Programming Fundamentals Marks    : "+stDetail1[j][2]);
+                            System.out.println("Database Management System Marks  : "+stDetail1[j][3]);
+
+                            while(true){  // updata prf marks
+                                System.out.print("\nEnter new Programming Fundamentals Marks   : ");
+                                stDetail1[j][2] = input.next();
+                                if(Integer.parseInt(stDetail1[j][2])<0 || Integer.parseInt(stDetail1[j][2])>100){
+                                    System.out.println("Invalid marks, please enter correct marks.\n");
+                                    continue;
+                                }
+                                break;
+                            }
+
+                            while(true){  // update dbms marks
+                                System.out.print("Enter new Database Management System Marks : ");
+                                stDetail1[j][3] = input.next();
+                                if(Integer.parseInt(stDetail1[j][3])<0 || Integer.parseInt(stDetail1[j][3])>100){
+                                    System.out.println("Invalid marks, please enter correct marks.\n");
+                                    continue;
+                                }
+                                break;
+                            }
+
+                            System.out.println("Marks have been updated successfully.");
+                            System.out.print("Do you want to update marks for another student? (Y/n) > ");
+
+                            char b = input.next().charAt(0);
+                            if(b=='Y' || b=='y'){
+                                clearConsole();
+                                continue L1;
+                            }else if(b=='N' || b=='n'){
+                                clearConsole();
+                                return stDetail1;
+                            }else{
+                                System.out.println("Invalid Input..!!");
+                            }
+
+                        }
+
+                    }
+
+                }
+                // If the enter an incorrect Student ID number
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n) > ");
+                char ch = input.next().charAt(0);
+
+                if(ch=='Y' || ch=='y'){
+                    clearConsole();
+                    continue L1;
+                }else if(ch=='N' || ch=='n'){
+                    clearConsole();
+                    break L1;
+                }else{
+                    System.out.println("Invalid Input..!!");
+                }
+            }
+        }
+        return stDetail1;
+
+    }
+
+
+
+    // [4] Update Student Details
+    public static String[][] updateStudentDetails(String[][] stDetail1){
+        Scanner input = new Scanner(System.in);
+
+        L1:	while(true){
+
+            // print title of "update student detail"
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.printf("\n|%50s %29s","UPDATE STUDENT DETAILS","|\n");
+            for(int i=0; i<80; i++){
+                System.out.print("-");
+            }
+            System.out.println("\n");
+
+
+            System.out.print("Enter Student ID : ");
+            String stID = input.next();
+
+            while(true){
+                for(int j=0; j<stDetail1.length; j++){
+
+                    if(stID.equals(stDetail1[j][0])){
+                        System.out.println("Student Name     : "+stDetail1[j][1]);
+
+                        System.out.print("\nEnter the new student name : ");
+                        stDetail1[j][1] = input.next();
+
+                        System.out.println("\nStudent detail has been updated successfully.");
+                        System.out.print("Do you want to update another student details? (Y/n) > ");
+
+                        char A = input.next().charAt(0);
+                        if(A=='Y' || A=='y'){
+                            clearConsole();
+                            continue L1;
+                        }else if(A=='N' || A=='n'){
+                            clearConsole();
+                            return stDetail1;
+                        }else{
+                            System.out.println("Invalid Input..!!");
+                        }
+                    }
+                }
+                // If the enter an incorrect Student ID number
+                System.out.print("Invalid Student ID. Do you want to search again? (Y/n) > ");
+                char ch = input.next().charAt(0);
+
+                if(ch=='Y' || ch=='y'){
+                    clearConsole();
+                    continue L1;
+                }else if(ch=='N' || ch=='n'){
+                    clearConsole();
+                    return stDetail1;
+                }else{
+                    System.out.println("Invalid Input..!!");
+                }
+            }
+        }
+
+    }
+
+
+
     // [3] Add Marks
     public static String[][] addMarks(String[][] stDetail1){
         Scanner input = new Scanner(System.in);
